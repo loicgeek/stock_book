@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+
+@section("content")
+
 <h1>products list, Welcome {{$user}}</h1>
 
 <table border="1">
@@ -19,3 +24,6 @@
     @endforeach
    
 </table>
+
+
+@endsection

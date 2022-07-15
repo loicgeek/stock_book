@@ -8,6 +8,7 @@ class ProductController extends Controller
 {
     public function index()
     {
+
         $products = [
             [
                 'id' => 1,

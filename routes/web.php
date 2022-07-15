@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get("/contact", [HomeController::class, 'contact']);
 Route::get("/", [HomeController::class, 'home']);
 
 Route::get("/login", [AuthController::class, 'getLogin']);

@@ -20,9 +20,9 @@ Route::get("/", [HomeController::class, 'home']);
 
 Route::get("/login", [AuthController::class, 'getLogin']);
 
-Route::get("/products", [ProductController::class, 'index']);
-Route::get("/products/create", [ProductController::class, 'create']);
-Route::post("/products", [ProductController::class, 'save']);
+Route::get("/products", [ProductController::class, 'index'])->name('products.index');
+Route::get("/products/create", [ProductController::class, 'create'])->name('products.create');
+Route::post("/products", [ProductController::class, 'save'])->name('products.save');
 Route::get("/products/{id}", [ProductController::class, 'details'])->name("details");
 Route::put("/products/{id}", [ProductController::class, 'update']); //patch, put
 Route::get("/products/{id}/edit", [ProductController::class, 'edit']);

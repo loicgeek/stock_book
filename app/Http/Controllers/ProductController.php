@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -35,8 +36,16 @@ class ProductController extends Controller
     {
         return view('products.create');
     }
-    public function save()
+    public function save(Request $request)
     {
+        $this->validate($request, [
+            'name' => ['required'],
+            'description' => ['required'],
+            'quantity' => ['required', 'integer'],
+        ]);
+
+        dd($request);
+
         return view('products.index');
     }
     public function details($id)

@@ -15,7 +15,7 @@
                 @show
            </div>
  
-            <div class="container flex-grow  h-screen">
+            <div class="container flex-grow  h-screen p-3">
                 @yield('content')
             </div>
         </div>

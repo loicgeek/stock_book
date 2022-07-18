@@ -33,11 +33,11 @@
             <td class="border p-3 text-center">
                 {{ $product['id'] }}
             </td>
-            <td class="border p-3 text-center">
+            <td class="border p-3 ">
                 {{$product['name']}}
             </td>
-            <td class="border p-3 text-center">
-                {{$product['price']}}
+            <td class="border p-3 ">
+                {{$product['price']}} FCFA
             </td>
             <td class="border p-3 ">
                <span class="text-underline text-blue-500">edit</span>

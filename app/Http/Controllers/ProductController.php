@@ -10,26 +10,10 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = [
-            [
-                'id' => 1,
-                'name' => "Mango",
-                'price' => 200
-            ],
-            [
-                'id' => 2,
-                'name' => "Granut",
-                'price' => 500
-            ],
-            [
-                'id' => 3,
-                'name' => "Bread",
-                'price' => 120
-            ]
-        ];
+        $products = Product::query()->get();
         return view('products.index', [
-            'products' => $products,
-            'user' => 'loic'
+            'products' => $products
+
         ]);
     }
     public function create()

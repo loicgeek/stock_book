@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -43,10 +43,14 @@ class ProductController extends Controller
             'description' => ['required'],
             'quantity' => ['required', 'integer'],
         ]);
-
-        dd($request);
-
-        return view('products.index');
+        $product = new Product();
+        $product->name = $request->name;
+        $product->quantity = $request->quantity;
+        $product->description = $request->description;
+        $product->stock_min = $request->stock_min;
+        $product->price = $request->price;
+        $product->save();
+        return  redirect(route('products.index'));
     }
     public function details($id)
     {

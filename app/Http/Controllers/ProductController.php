@@ -39,17 +39,19 @@ class ProductController extends Controller
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required'],
+            'name' => ['required', 'unique:products,name'],
             'description' => ['required'],
             'quantity' => ['required', 'integer'],
         ]);
-        $product = new Product();
-        $product->name = $request->name;
-        $product->quantity = $request->quantity;
-        $product->description = $request->description;
-        $product->stock_min = $request->stock_min;
-        $product->price = $request->price;
-        $product->save();
+        // dd($request->except(['_token']));
+        Product::query()->create($request->except(['_token']));
+        // $product = new Product();
+        // $product->name = $request->name;
+        // $product->quantity = $request->quantity;
+        // $product->description = $request->description;
+        // $product->stock_min = $request->stock_min;
+        // $product->price = $request->price;
+        // $product->save();
         return  redirect(route('products.index'));
     }
     public function details($id)

@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [HomeController::class, 'home']);
 
-Route::get("/login", [AuthController::class, 'getLogin']);
 
 Route::get("/products", [ProductController::class, 'index'])->name('products.index');
 Route::get("/products/create", [ProductController::class, 'create'])->name('products.create');
@@ -27,3 +26,9 @@ Route::get("/products/{id}", [ProductController::class, 'details'])->name("detai
 Route::put("/products/{id}", [ProductController::class, 'update']); //patch, put
 Route::get("/products/{id}/edit", [ProductController::class, 'edit']);
 Route::delete("/products/{id}", [ProductController::class, 'destroy']);
+
+
+Route::get("/auth/login", [AuthController::class, 'getLogin'])->name("login");
+Route::post("/auth/login", [AuthController::class, 'postLogin'])->name("postLogin");
+Route::get("/auth/register", [AuthController::class, 'getRegister'])->name("register");
+Route::post("/auth/register", [AuthController::class, 'postRegister'])->name("postRegister");

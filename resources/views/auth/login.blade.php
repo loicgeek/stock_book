@@ -9,7 +9,7 @@
         <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> start your 14-day free trial </a>
       </p>
     </div>
-    <form class="mt-8 space-y-6" action="{{route('auth.postLogin')}}" method="POST">
+    <form class="mt-8 space-y-6" action="{{route('postLogin')}}" method="POST">
         @csrf
         <input type="hidden" name="remember" value="true">
       <div class="rounded-md shadow-sm -space-y-px">
@@ -52,5 +52,8 @@
         </button>
       </div>
     </form>
+    <div class="text-sm font-medium  text-center">
+      Not account yet? <a class="underline text-indigo-500" href="{{route('register')}}"> Create my account</a> 
+    </div>
   </div>
 </div>

@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
-        $products = Product::query()->get();
+
+        $user = $request->user();
+        $products = Product::query()->where('user_id', $user->id)->get();
+
         return view('products.index', [
             'products' => $products
 
@@ -22,13 +25,33 @@ class ProductController extends Controller
     }
     public function save(Request $request)
     {
+
+        $user = $request->user();
         $this->validate($request, [
             'name' => ['required', 'unique:products,name'],
             'description' => ['required'],
             'quantity' => ['required', 'integer'],
         ]);
         // dd($request->except(['_token']));
-        Product::query()->create($request->except(['_token']));
+        //$request->except(['_token'])
+        // [
+        //     "name"=>"mague",
+        //     "price"=>"200",
+        //     "quantity"=>"100"
+        // ]
+        //         +
+        // [
+        //     "user_id" => $user->id
+        // ]
+
+        // [
+        //     "name"=>"mague",
+        //     "price"=>"200",
+        //     "quantity"=>"100",
+        //     "user_id" => $user->id
+        // ]
+
+        Product::query()->create(array_merge($request->except(['_token']), ["user_id" => $user->id]));
         // $product = new Product();
         // $product->name = $request->name;
         // $product->quantity = $request->quantity;

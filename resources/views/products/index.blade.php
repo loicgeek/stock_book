@@ -25,7 +25,7 @@
       </tr>
       @if (count($products)==0)
       <tr>
-        <td class="px-6 py-4 border-t" colspan="4">No events found.</td>
+        <td class="px-6 py-4 border-t text-center" colspan="4">No Products found.</td>
      </tr>
       @endif
       @foreach ($products as $product)

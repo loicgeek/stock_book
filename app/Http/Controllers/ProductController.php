@@ -26,39 +26,23 @@ class ProductController extends Controller
     public function save(Request $request)
     {
 
+
+
         $user = $request->user();
         $this->validate($request, [
             'name' => ['required', 'unique:products,name'],
             'description' => ['required'],
             'quantity' => ['required', 'integer'],
         ]);
-        // dd($request->except(['_token']));
-        //$request->except(['_token'])
-        // [
-        //     "name"=>"mague",
-        //     "price"=>"200",
-        //     "quantity"=>"100"
-        // ]
-        //         +
-        // [
-        //     "user_id" => $user->id
-        // ]
+        $product = Product::query()->create(array_merge($request->except(['_token']), ["user_id" => $user->id]));
+        if ($request->hasFile("image")) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . "_" . $file->getClientOriginalName();
+            $file->move(public_path('images'), $filename);
+            $path =  "images/" . $filename;
+            $product->update(['image' => $path]);
+        }
 
-        // [
-        //     "name"=>"mague",
-        //     "price"=>"200",
-        //     "quantity"=>"100",
-        //     "user_id" => $user->id
-        // ]
-
-        Product::query()->create(array_merge($request->except(['_token']), ["user_id" => $user->id]));
-        // $product = new Product();
-        // $product->name = $request->name;
-        // $product->quantity = $request->quantity;
-        // $product->description = $request->description;
-        // $product->stock_min = $request->stock_min;
-        // $product->price = $request->price;
-        // $product->save();
         return  redirect(route('products.index'));
     }
     public function details($id)

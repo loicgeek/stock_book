@@ -17,7 +17,7 @@
 <div class="bg-white rounded-md shadow overflow-x-auto">
     <table class="w-full whitespace-nowrap">
       <tr class="text-left font-bold">
-        <th class="pb-4 border  pt-6 px-6">ID</th>
+        <th class="pb-4 border  pt-6 px-6">#</th>
         <th class="pb-4 border pt-6 px-6">Name</th>
         <th class="pb-4 border pt-6 px-6">Price</th>
         <th class="pb-4 border pt-6 px-6">Actions</th>
@@ -31,7 +31,12 @@
       @foreach ($products as $product)
         <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
             <td class="border p-3 text-center">
-                {{ $product['id'] }}
+              @if ($product->image)   
+                <img src="{{asset($product->image)}}" width="100" class="text-center" height="100" alt="" srcset="">
+              @else
+              {{$product->id}}
+              @endif
+             
             </td>
             <td class="border p-3 ">
                 {{$product['name']}}

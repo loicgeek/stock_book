@@ -12,7 +12,7 @@
         </h1>
         <div class="max-w-3xl bg-white rounded-md shadow overflow-hidden">
         
-          <form  action="{{route('products.save')}}" method="POST" >
+          <form  action="{{route('products.save')}}" method="POST" enctype="multipart/form-data" >
             @csrf
             <div class="flex flex-col flex-wrap -mb-8 -mr-6 p-8">
                 <div class="flex flex-col py-2">
@@ -53,6 +53,14 @@
                     <span>Min Stock</span>
                     <input type="number" name="stock_min" value="{{old('stock_min')}}" id="stock_min"  placeholder="Product Minimum Stock" class="border  p-1 rounded-md @error('stock_min') border-red-500 @enderror"/>
                     @error('stock_min')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="flex flex-col py-2">
+                    <span>Image</span>
+                    <input type="file" name="image"  id="image"  placeholder="Select Image" class="border  p-1 rounded-md @error('image') border-red-500 @enderror"/>
+                    @error('image')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
